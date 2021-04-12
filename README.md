@@ -10,4 +10,4 @@ There are two main parts to the firmware, the server and the GUI. The server is 
 The GUI is stored on the MicroSD card to save space in the limited Arduino storage. Additionally, the entire GUI including JavaScript and CSS are in a single .html file. This simplifies the server and reduces load time.
 
 ## Testing Server
-A simple NodeJS server is thrown in to aid development. It simulates the Arduino server, making it easy to see data dumps and test the GUI without spinning up an Arduino.
+A simple Node.js server is thrown in to aid development. It simulates the Arduino server, making it easy to see data dumps and test the GUI without spinning up an Arduino.
