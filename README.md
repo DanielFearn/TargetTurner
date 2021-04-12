@@ -8,3 +8,6 @@ The firmware is written for an Arduino Mega with an ethernet and MicroSD shield,
 There are two main parts to the firmware, the server and the GUI. The server is what runs on the Arduino. It has two purposes: serve the GUI files to the client device from the MicroSD; receive command requests to drive the targets. Due to the high latency of processing network events, the entire target sequence is uploaded to the server once which can then be started and stopped at will.
 
 The GUI is stored on the MicroSD card to save space in the limited Arduino storage. Additionally, the entire GUI including JavaScript and CSS are in a single .html file. This simplifies the server and reduces load time.
+
+## Testing Server
+A simple NodeJS server is thrown in to aid development. It simulates the Arduino server, making it easy to see data dumps and test the GUI without spinning up an Arduino.
