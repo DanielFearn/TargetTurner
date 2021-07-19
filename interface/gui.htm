@@ -216,10 +216,10 @@
 
 			<div class="controls card">
 					<h2>Controls</h2>
-					<button onclick="SequenceInput.sendData()">Upload sequence</button>
+					<button onclick="SequenceInput.sendData()" id="upload_button">Upload sequence</button>
 					<br><br>
 		
-					<button onclick="SequenceInput.sendSimpleCommand('start');">Start</button>
+					<button onclick="SequenceInput.sendSimpleCommand('start');">Run</button>
 					<button onclick="SequenceInput.sendSimpleCommand('stop');">Stop</button>
 					<br><br>
 					<button onclick="SequenceInput.sendSimpleCommand('faceall');">Face</button>
@@ -460,10 +460,18 @@
 				console.log(data);
 				console.log(outputString);
 
+				document.getElementById('upload_button').innerHTML = 'Uploading...';
+				var originalColour = document.getElementById('upload_button').style.backgroundColor;
+				document.getElementById('upload_button').style.backgroundColor = 'red';
+
 				var request = new XMLHttpRequest();
 				request.open('GET', '/upload/' + outputString, true);
 				request.onload = function () {
-					alert ("Sequence uploaded. Press start to begin sequence.");
+					document.getElementById('upload_button').innerHTML = 'Sequence uploaded!';
+					document.getElementById('upload_button').style.backgroundColor = originalColour;
+					setTimeout(function(){
+						document.getElementById('upload_button').innerHTML = 'Upload sequence';
+					}, 2000);
 				}
 				request.onreadystatechange = function() {
 					if(request.readyState == 4 && request.status != 200) {
@@ -549,7 +557,7 @@
 
 		}
 
-		SequenceInput.init(2);
+		SequenceInput.init(4);
 		SequenceInput.fillRandomSettings();
 
 		//window.onbeforeunload = () => {return '';}
