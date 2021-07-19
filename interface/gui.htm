@@ -39,6 +39,10 @@
 				font-weight: bold;
 				cursor: pointer;
 			}
+
+			button.danger {
+				background-color: #f55;
+			}
 		
 			input[type="checkbox"] {
 				width: 20px;
@@ -186,10 +190,9 @@
 
 				<button onclick="SequenceInput.addBlankRow()">Add Step</button>
 			
-			<button onclick="SequenceInput.addTarget()">Add Target</button>
-			<button onclick="SequenceInput.removeTarget()">Remove Target</button>
+			<button onclick="SequenceInput.changeNumTargets()">Set number of targets</button>
 			
-			<button onclick="if(confirm('Are you sure you want to delete the entire sequence?')){SequenceInput.emptyTable(); SequenceInput.init(SequenceInput.numTargets)}">Clear</button>
+			<button class="danger" onclick="if(confirm('Are you sure you want to delete the entire sequence?')){SequenceInput.emptyTable(); SequenceInput.init(SequenceInput.numTargets)}">Clear</button>
 			</div>
 	
 			
@@ -325,23 +328,19 @@
 				}
 			},
 			
-			addTarget: function(){
-				if (!confirm('Adding a target will clear the sequence. Proceed?')) return;
+			changeNumTargets: function(){
+				newTargets = prompt('Enter the number of targets connected:');
+				if(!newTargets) return;
+				if(isNaN(newTargets)) return;
+				newTargets = parseInt(newTargets);
 
-				if (this.numTargets == this.maxTargets) {
-					alert("Max number of targets reached");
+				if(newTargets > this.maxTargets){
+					alert('Maximum number of targets is ' + this.maxTargets);
 					return;
 				}
 
-				this.init(++this.numTargets)
-			},
+				this.init(newTargets);
 
-			removeTarget: function(){
-				if (!confirm('Removing a target will clear the sequence. Proceed?')) return;
-
-				if (this.numTargets <= 1) return;
-
-				this.init(--this.numTargets);
 			},
 
 			addRow: function(state) {
