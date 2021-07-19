@@ -111,7 +111,7 @@ void writeToTarget(int targetIndex, int face) {
   bool facing = (face == 1);
   Serial.println("Facing target " + (String)targetIndex + (facing ? " to face" : " away"));
   digitalWrite(targetLEDPins[targetIndex], face);
-  targetServos[targetIndex].write(20 + (1-face) * 140);
+  targetServos[targetIndex].write(20 + (1-face) * 90);
 }
 
  // for debugging

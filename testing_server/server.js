@@ -14,7 +14,7 @@ console.log('Listening on port ' + port + '\n\n');
 
 
 
-app.use(express.static('../'));
+app.use('/', express.static('interface'));
 
 app.get('/upload/*', uploadHandler);
 
